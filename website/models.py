@@ -12,12 +12,12 @@ from sqlalchemy import func
 class Note(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     data = db.Column(db.String(10000))
-    data = db.Column(db.DateTime(timezone=True), default=func.now())
+    date = db.Column(db.DateTime(timezone=True), default=func.now())
     #   user.id пишется с маленькой буквы, так как мы используем db.ForeignKey
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
 
 
-class User(db.Model, UserMixin):
+class User(db.Model, UserMixin): #UserMixin для пихания класса User в flask
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), unique=True)
     password = db.Column(db.String(150))
@@ -25,4 +25,4 @@ class User(db.Model, UserMixin):
     # Note пишется с большой буквы так как мы пишем название класса в db.relationship
     # db.relationship испольхуется тогда,
     # когда мы должны настроить множественное отнощение( Один пользователь имеет много постов)
-    notes = db.relationship('Note')
+    notes = db.relationship('Note', backref="Owner")
