@@ -10,6 +10,7 @@ from .models import User
 from werkzeug.security import generate_password_hash, check_password_hash
 from . import db
 from flask_login import login_user, login_required, logout_user, current_user
+from .defs import *
 
 auth = Blueprint('auth', __name__)
 
@@ -33,7 +34,7 @@ def login():
             flash("email does not exist", category="error")
 
 
-    return render_template("login.html", text="Testing", user=current_user)
+    return render_template("login.html", text="Testing", user=current_user, key=key())
 '''
     <!--
     {% if boolean == True %}
@@ -84,6 +85,7 @@ def sign_up():
             db.session.add(new_user)
             db.session.commit()
             user=current_user
+            #а вот и строчечка запоминающая current_user
             login_user(user, remember=True)
             flash("Accout created! Let's say hello to this EnJoy cooking world!", category="success")
 
@@ -91,4 +93,4 @@ def sign_up():
             return redirect(url_for("views.home"))
 
 
-    return render_template("sign_up.html",user=current_user)
+    return render_template("sign_up.html",user=current_user, key=key())
