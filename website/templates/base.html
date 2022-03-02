@@ -80,12 +80,13 @@
         <a class="nav-item nav-link" id="Resipes"  href="/resipes">Resipes</a>
         <a class="nav-item nav-link" id="Nirn"  href="/nirn">Nirn</a>
         <a class="nav-item nav-link" id="AddonsList"  href="/addons_list">AddonsList</a>
+        <a class="nav-item nav-link" id="testgame"  href="/testgame">testgame</a>
 
         {%else%}
         <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign Up</a>
         <a class="nav-item nav-link" id="login"  href="/login">Login</a>
         {%endif%}
-        
+
         {% if user.email == key %}
         <a class="nav-item nav-link" id="AddResipes"  href="/add_resipes">AddResipes</a>
         <a class="nav-item nav-link" id="AddAddon"  href="/add_addon">AddAddon</a>

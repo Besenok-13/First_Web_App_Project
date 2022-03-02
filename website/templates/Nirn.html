@@ -1,3 +1,4 @@
+
 {% set style = "NirnStyle.css" %}
 {% extends "base.html" %}
 {% block title %}AddonPreview{% endblock %}
@@ -23,7 +24,7 @@
     {% for resipe in nirn %}
     <div class="col">
       <div class="card" style="width: 22rem;">
-        <img src={{resipe.image}} class="card-img-top" alt="Хрен знает где" width="200" height="250">
+        <img src={{resipe.image}} class="card-img-top" alt="" width="200" height="250">
         <div class="card-body">
           <h5 class="card-title">{{resipe.name}}</h5>
           <p class="card-text">

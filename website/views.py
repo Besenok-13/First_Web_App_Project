@@ -32,7 +32,7 @@ def home():
 
 
 """
-Всё что идёт дальше - бред гения, или просто бред, смотря по работоспособности.
+Всё что идёт дальше - бред гения, или просто бред, в зависимости от работоспособности.
 НАСТОЯТЕЛЬНО НЕ СОВЕТУЮ ЧТО-ЛИБО МЕНЯТЬ, ибо только я знаю, что в каком костыле используется.
 Приятного чтения и поменьше крови из глаз.
 """
@@ -383,3 +383,17 @@ def show_nirn_preview(nirnId):
 def nirn():
     nirn = Nirn.query.order_by(Nirn.id).all()
     return render_template("Nirn.html", user=current_user, nirn=nirn, key=key())
+
+@views.route("/testgame", methods=["GET", "POST"])
+@login_required
+def testgame():
+    import pygame
+    WIDTH_WINDOW, HEIGHT_WINDOW = 1000, 800
+    screen = pygame.display.set_mode((WIDTH_WINDOW, HEIGHT_WINDOW))
+    pygame.display.set_caption("Бактерии. Путь к Олимпу")
+    running = True
+    while running:
+        for event in pygame.event.get():
+            if event.type==pygame.QUIT:
+                running=False
+    return render_template("home.html", user=current_user, key=key())
